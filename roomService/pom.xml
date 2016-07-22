@@ -18,11 +18,16 @@
     </properties>
 
     <dependencies>
+        <!-- socketServer-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>socketServer</groupId>
+            <artifactId>common</artifactId>
+            <version>${common-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>socketServer</groupId>
+            <artifactId>thriftService</artifactId>
+            <version>${thriftService-version}</version>
         </dependency>
     </dependencies>
 </project>

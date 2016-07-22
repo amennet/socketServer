@@ -2,8 +2,10 @@ package socketServer.handler;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
-
-import java.util.concurrent.TimeUnit;
+import socketServer.bean.Message;
+import socketServer.bean.MessageBean;
+import socketServer.bean.enums.Command;
+import socketServer.bean.enums.MessageType;
 
 /**
  * Created by Admin on 2016/7/20.
@@ -11,10 +13,9 @@ import java.util.concurrent.TimeUnit;
 public class CoordinatorHandler extends ChannelHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        byte[] bytes = (byte[]) msg;
-        if (bytes[0] == 0 && bytes[1] == 1) {
-            // TODO 更新topic时间
-        }
+        Message message = (Message) msg;
+        System.out.println("business" + message);
+        // 传到业务系统去
     }
 
 

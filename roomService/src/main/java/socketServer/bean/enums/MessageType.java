@@ -7,6 +7,7 @@ public enum MessageType {
     heartbeat("EF", "心跳"),
     initConnectRequest("EE", "初始化"),
     initConnectResponse("FE", "初始化返回"),
+    heartbeatAck("FF", "心跳确认"),
     business("", "业务消息");
 
     private String code;

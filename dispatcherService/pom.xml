@@ -18,6 +18,17 @@
     </properties>
 
     <dependencies>
+        <!-- socketServer-->
+        <dependency>
+            <groupId>socketServer</groupId>
+            <artifactId>common</artifactId>
+            <version>${common-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>socketServer</groupId>
+            <artifactId>thriftService</artifactId>
+            <version>${thriftService-version}</version>
+        </dependency>
     </dependencies>
 
 </project>

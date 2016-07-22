@@ -2,6 +2,10 @@ package socketServer.handler;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import socketServer.bean.Message;
+import socketServer.bean.MessageBean;
+import socketServer.bean.enums.Command;
+import socketServer.bean.enums.MessageType;
 
 import java.net.SocketAddress;
 
@@ -11,10 +15,15 @@ import java.net.SocketAddress;
 public class InitConnectHandler extends ChannelHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        byte[] bytes = (byte[]) msg;
-        if (bytes.length == 36 && bytes[0] == 0xE && bytes[1] == 0x0 && bytes[34] == 0xF && bytes[35] == 0xF) {
+        System.out.println("init" + msg);
+        Message message = (Message) msg;
+        if (message.getHeader().getCommand() == Command.EE.getByte()) {
+            System.out.println("init" + message);
             // TODO 获取IP地址,校验安全,验证MD5编号
             SocketAddress socketAddress = ctx.channel().remoteAddress();
+        } else {
+            ctx.fireChannelRead(message);
         }
+
     }
 }

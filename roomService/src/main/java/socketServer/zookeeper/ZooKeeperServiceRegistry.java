@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import socketServer.Runner;
 import socketServer.constants.Constant;
+import socketServer.utils.GsonUtil;
 
 /**
  * 基于 ZooKeeper 的服务注册接口实现
@@ -29,7 +30,9 @@ public class ZooKeeperServiceRegistry implements ServiceRegistry{
         LOGGER.debug("connect socketServer.zookeeper");
     }
 
-    public void register(String serviceName, String serviceAddress) {
+
+
+    public void register(String serviceName, Object nodeData) {
         // 创建 rpc.registry 节点（持久）
         String registryPath = Constant.ZK_REGISTRY_PATH;
         if (!zkClient.exists(registryPath)) {
@@ -44,7 +47,7 @@ public class ZooKeeperServiceRegistry implements ServiceRegistry{
         }
         // 创建 address 节点（临时）
         String addressPath = servicePath + "/address-";
-        String addressNode = zkClient.createEphemeralSequential(addressPath, serviceAddress);
+        String addressNode = zkClient.createEphemeralSequential(addressPath, GsonUtil.toJson(nodeData));
         LOGGER.debug("create address node: {}", addressNode);
     }
 }
